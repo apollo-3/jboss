@@ -6,7 +6,7 @@ bash "extract testweb.zip" do
 	cwd "/usr/local/share/jboss/standalone/deployments/"
 	code <<-EOH
 		unzip -o testweb.zip
-	        mv testweb/testweb.xml ./
+	        mv testweb/testweb.war ./
 	        rm -r testweb
 		rm testweb.zip
 	EOH
