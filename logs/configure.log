@@ -1,0 +1,9 @@
+Starting Chef Client, version 12.5.1
+Compiling Cookbooks...
+Converging 1 resources
+Recipe: jboss::configure
+  * file[/usr/local/share/jboss/standalone/configuration/standalone.xml] action create (up to date)
+
+Running handlers:
+Running handlers complete
+Chef Client finished, 0/1 resources updated in 26 seconds

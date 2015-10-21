@@ -1,0 +1,75 @@
+Starting Chef Client, version 12.5.1
+Compiling Cookbooks...
+Converging 1 resources
+Recipe: jboss::stop
+  * bash[stop jboss] action run
+    - execute "bash"  "/tmp/chef-script20151021-2883-k8xldt"
+
+Running handlers:
+Running handlers complete
+Chef Client finished, 1/1 resources updated in 50 seconds
+root@precise32:/home/vagrant/chef-repo# ps -ef | grep jboss
+root      3115  1235 17 09:32 pts/4    00:00:00 grep --color=auto jboss
+root@precise32:/home/vagrant/chef-repo# rm -r /usr/local/share/jboss
+root@precise32:/home/vagrant/chef-repo# chef-solo -c solo.rb -j config.json 
+Starting Chef Client, version 12.5.1
+Compiling Cookbooks...
+Recipe: java_se::_download_java
+  * chef_gem[open_uri_redirections] action install (up to date)
+  Converging 19 resources
+  * chef_gem[open_uri_redirections] action install (up to date)
+  * ruby_block[fetch http://download.oracle.com/otn-pub/java/jdk/8u60-b27/jdk-8u60-linux-i586.tar.gz] action run
+    - execute the ruby block fetch http://download.oracle.com/otn-pub/java/jdk/8u60-b27/jdk-8u60-linux-i586.tar.gz
+  * ruby_block[validate /home/vagrant/chef-repo/jdk-8u60-linux-i586.tar.gz] action run
+    - execute the ruby block validate /home/vagrant/chef-repo/jdk-8u60-linux-i586.tar.gz
+Recipe: java_se::_linux_install
+  * ruby_block[set-env-java-home] action run
+    - execute the ruby block set-env-java-home
+  * directory[/etc/profile.d] action create (up to date)
+  * file[/etc/profile.d/jdk.sh] action create (up to date)
+  * ruby_block[set JAVA_HOME in /etc/environment] action run (skipped due to only_if)
+  * yum_package[glibc] action install (skipped due to only_if)
+  * apt_package[tar] action install (up to date)
+  * ruby_block[adding java to /usr/lib/jvm/jdk1.8.0_60] action run (skipped due to not_if)
+  * template[adding /usr/lib/jvm/.java.jinfo for debian] action create (skipped due to only_if)
+  * ruby_block[symlink /usr/lib/jvm/jdk1.8.0_60 to /usr/lib/jvm/java] action run (skipped due to only_if)
+  * ruby_block[update-alternatives] action run
+    - execute the ruby block update-alternatives
+  * link[/usr/lib/jvm/default-java] action create (up to date)
+Recipe: jboss::download
+  * remote_file[/usr/local/share/jboss.zip] action create (up to date)
+Recipe: jboss::install
+  * apt_package[unzip] action install (up to date)
+  * bash[extract jboss] action run
+    - execute "bash"  "/tmp/chef-script20151021-3123-tzr2u3"
+Recipe: jboss::configure
+  * file[/usr/local/share/jboss/standalone/configuration/standalone.xml] action create
+    - update content in file /usr/local/share/jboss/standalone/configuration/standalone.xml from 25abbf to f9ff8b
+    --- /usr/local/share/jboss/standalone/configuration/standalone.xml	2015-10-19 22:13:34.000000000 +0000
+    +++ /usr/local/share/jboss/standalone/configuration/.standalone.xml20151021-3123-1vtv53x	2015-10-21 09:37:24.975642719 +0000
+    @@ -397,7 +397,7 @@
+             <socket-binding name="management-http" interface="management" port="${jboss.management.http.port:9990}"/>
+             <socket-binding name="management-https" interface="management" port="${jboss.management.https.port:9993}"/>
+             <socket-binding name="ajp" port="${jboss.ajp.port:8009}"/>
+    -        <socket-binding name="http" port="${jboss.http.port:8080}"/>
+    +        <socket-binding name="http" port="${jboss.http.port:8088}"/>
+             <socket-binding name="https" port="${jboss.https.port:8443}"/>
+             <socket-binding name="txn-recovery-environment" port="4712"/>
+             <socket-binding name="txn-status-manager" port="4713"/>
+    - change mode from '0644' to '0755'
+Recipe: jboss::start
+  * bash[start jboss] action run
+    - execute "bash"  "/tmp/chef-script20151021-3123-1qberxa"
+
+Running handlers:
+Running handlers complete
+
+Deprecated features used!
+  chef_gem[open_uri_redirections] chef_gem compile_time installation is deprecated at 1 location:
+    - /home/vagrant/chef-repo/cookbooks/java_se/recipes/_download_java.rb:50:in `from_file'
+  chef_gem[open_uri_redirections] Please set `compile_time false` on the resource to use the new behavior. at 1 location:
+    - /home/vagrant/chef-repo/cookbooks/java_se/recipes/_download_java.rb:50:in `from_file'
+  chef_gem[open_uri_redirections] or set `compile_time true` on the resource if compile_time behavior is required. at 1 location:
+    - /home/vagrant/chef-repo/cookbooks/java_se/recipes/_download_java.rb:50:in `from_file'
+
+Chef Client finished, 7/20 resources updated in 04 minutes 29 seconds
