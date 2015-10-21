@@ -1,0 +1,10 @@
+Starting Chef Client, version 12.5.1
+Compiling Cookbooks...
+Converging 1 resources
+Recipe: jboss::stop
+  * bash[stop jboss] action run
+    - execute "bash"  "/tmp/chef-script20151021-2883-k8xldt"
+
+Running handlers:
+Running handlers complete
+Chef Client finished, 1/1 resources updated in 50 seconds

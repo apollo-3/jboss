@@ -1,0 +1,10 @@
+tarting Chef Client, version 12.5.1
+Compiling Cookbooks...
+Converging 1 resources
+Recipe: jboss::reload
+  * bash[reload jboss] action run
+    - execute "bash"  "/tmp/chef-script20151021-4212-t24mkx"
+
+Running handlers:
+Running handlers complete
+Chef Client finished, 1/1 resources updated in 01 minutes 14 seconds

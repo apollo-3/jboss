@@ -1,0 +1,17 @@
+Starting Chef Client, version 12.5.1
+Compiling Cookbooks...
+Converging 3 resources
+Recipe: jboss::deploy
+  * remote_file[/usr/local/share/jboss/standalone/deployments/testweb.zip] action create
+    - create new file /usr/local/share/jboss/standalone/deployments/testweb.zip
+    - update content in file /usr/local/share/jboss/standalone/deployments/testweb.zip from none to 596c0b
+    (new content is binary, diff output suppressed)
+  * bash[extract testweb.zip] action run
+    - execute "bash"  "/tmp/chef-script20151021-4699-juyajp"
+Recipe: jboss::restart
+  * bash[restart jboss] action run
+    - execute "bash"  "/tmp/chef-script20151021-4699-isj28y"
+
+Running handlers:
+Running handlers complete
+Chef Client finished, 3/3 resources updated in 02 minutes 12 seconds
